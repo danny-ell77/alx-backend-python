@@ -5,8 +5,8 @@ import asyncio
 import random
 
 
-async def wait_random(max_delay=10):
-    """generate random sleep delay fro coroutine"""
+async def wait_random(max_delay: int = 10) -> float:
+    """generate random sleep delay for coroutine"""
     delay = random.uniform(0, max_delay)
     await asyncio.sleep(delay)
     return delay

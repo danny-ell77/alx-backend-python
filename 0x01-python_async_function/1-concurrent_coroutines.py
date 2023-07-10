@@ -2,16 +2,18 @@
 """This module holds the implementation for `wait_n`
 """
 import asyncio
+from typing import List
 
 wait_random = __import__("0-basic_async_syntax").wait_random
 
 
-async def wait_n(n, max_delay):
+async def wait_n(n: int, max_delay: int) -> List[float]:
     """executes multiple sleep coroutines concurrently"""
     tasks = []
-    for _ in range(n):
+    i = 0
+    while i < n:
         task = asyncio.create_task(wait_random(max_delay))
         tasks.append(task)
+        i += 1
     delays = await asyncio.gather(*tasks)
-    delays.sort()
-    return delays
+    return sorted(delays)
